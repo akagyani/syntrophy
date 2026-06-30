@@ -40,7 +40,7 @@ export async function POST(request) {
 
     const data = await geminiRes.json();
     const draft = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
-
+    if (!draft) {
       return NextResponse.json({ error: "Gemini returned an empty response." }, { status: 500 });
     }
 
